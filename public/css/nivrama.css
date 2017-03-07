@@ -1,0 +1,42 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.logo-cntr{
+    position: relative;
+}
+.logo{
+    background-image: url('../images/nivrama-logo-md.png');
+    background-size: 190px 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+    display: inline-block;
+    line-height: 40px;
+    width: 200px;
+    position: absolute;
+    padding: 5px;
+    top:10px;
+    left:20px;
+}
+
+.top-body-border{
+    border-top: 1px solid #C8C8C8;
+    border-left: 1px solid #C8C8C8;
+    border-right: 1px solid #C8C8C8;
+    border-radius: 10px 10px 0 0;
+    height: 20px;
+}
+.body-area{
+    border-bottom: 1px solid #C8C8C8;
+    border-left: 1px solid #C8C8C8;
+    border-right: 1px solid #C8C8C8;
+    border-radius: 0 0 10px 10px;
+}
+.nav-menu-floar{
+    float: right;
+}
+.nav-right{
+    float: right;
+}

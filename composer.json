@@ -1,0 +1,11 @@
+{
+	"autoload": {
+		"psr-4": {
+			"Jobboard\\": "app/Jobboard"
+		},
+		"files": [ "configure.php" ]
+	},
+	"require": {
+		"twbs/bootstrap": "^3.3"
+	}
+}
