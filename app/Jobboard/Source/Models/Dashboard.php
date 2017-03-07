@@ -27,7 +27,11 @@ class Dashboard extends \Jobboard\Source\Lib\Database
     final public function getDashboard()
     {
         $response = [];
-
+        /**
+         * This query Uses the Recruiter Table and LEFT JOINS company.
+         * I used LEFT JOIN so that we still get the RECRUITER info should
+         * the company not exist.
+         */
         $recruiterSql = $this->sqlQuery(
             'SELECT r.*, c.company_name FROM recruiter r '
             .'LEFT JOIN company c ON r.company_id = c.company_id '
@@ -47,7 +51,11 @@ class Dashboard extends \Jobboard\Source\Lib\Database
              */
             $response['recruiter'] = $recruiter['result'][0];
 
-            //Get list of all created Job Posts
+            /**
+             * Getting list of posted jobs with a limit of 20.
+             * We are also sorting by column that was submitted by the user.
+             * The results will be added into the response.
+             */
             $jobsSql = $this->sqlQuery(
                 'SELECT * FROM job '
                 .'WHERE recruiter_id = :rid '
@@ -103,9 +111,17 @@ class Dashboard extends \Jobboard\Source\Lib\Database
          * This Statement will get the base job info as well as the previous
          * and next job_id.  The latter two can be removed if there is a 
          * performance issue or if the navigation is not wanted.
+         *
+         * We start by assigning variables with the id of the recruiter and job
          */
         $this->sqlQuery('SET @rid = :rid, @jid = :jid', $params);
 
+        /**
+         * Get the job info and include the next and previous job numbers
+         * for this recruiter to include in the response.  This isn't neccesary,
+         * but I thought it was a nice thing to include to avoid hving to create
+         * another statement.
+         */
         $jobSql = $this->sqlQuery(            
             'SELECT j.*,'
             .'    (IFNULL((SELECT '
